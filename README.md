@@ -116,15 +116,75 @@ The assistant follows the LLM + Tools paradigm:
 | Communication | Webhook (HTTP)                                    |
 | Language      | Python                                            |
 
+-----------------------------------------------------------------------------------------------------------------
+🚀 Running Locally
 
-🔮 Future Enhancements
+1.Prerequisites
 
-- Persistent database memory
+- Make sure you have:
 
-- OAuth-based user authentication
+- Python 3.9+
 
-- Multi-agent routing
+- n8n installed and running locally
 
-- Docker containerization
+- Google API credentials configured in n8n
 
-- Cloud deployment
+- OpenAI API key configured inside n8n
+
+- Git installed (optional, for cloning)
+
+2.Clone the Repository
+
+git clone https://github.com/YOUR_USERNAME/n8n-personal-assistant.git
+cd n8n-personal-assistant
+
+3.Create a Virtual Environment
+
+python -m venv .venv
+
+4.Activate the Virtual Environment
+
+for windows: 
+.\.venv\Scripts\activate
+
+for macOS / Linux:
+source .venv/bin/activate
+
+5.Install Dependencies:
+pip install -r requirements.txt
+
+6.Configure Webhook URL:
+Inside app.py, ensure the webhook URL matches your n8n workflow:
+
+"http://localhost:5678/webhook/YOUR_WEBHOOK_ID"
+
+Make sure:
+
+- n8n is running
+
+- The workflow is activated
+
+- The webhook is set to POST
+
+7.Start the Streamlit App:
+python -m streamlit run app.py
+
+8.Start n8n (If Not Already Running)
+
+If installed globally: n8n start
+
+Or if running via Docker: docker start <your-container-name>
+
+9.Test the System
+
+- Open the Streamlit UI
+
+- Send a test prompt (e.g., “Create a task to buy groceries”)
+
+- Verify that: 
+
+  - The AI Agent selects the correct tool
+
+  - The action executes in Google Tasks
+
+  - A response is returned in Streamlit
